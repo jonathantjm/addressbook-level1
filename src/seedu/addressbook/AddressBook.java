@@ -106,6 +106,10 @@ public class AddressBook {
             + PERSON_DATA_PREFIX_EMAIL + "EMAIL";
     private static final String COMMAND_ADD_EXAMPLE = COMMAND_ADD_WORD + " John Doe p/98765432 e/johnd@gmail.com";
 
+    private static final String COMMAND_FIRST_WORD = "first";
+    private static final String COMMAND_FIRST_DESC = "displays the first person of the address book.";
+    private static final String COMMAND_FIRST_EXAMPLE = COMMAND_FIRST_WORD;
+
     private static final String COMMAND_FIND_WORD = "find";
     private static final String COMMAND_FIND_DESC = "Finds all persons whose names contain any of the specified "
             + "keywords (case-sensitive) and displays them as a list with index numbers.";
@@ -375,6 +379,8 @@ public class AddressBook {
         switch (commandType) {
             case COMMAND_ADD_WORD:
                 return executeAddPerson(commandArgs);
+            case COMMAND_FIRST_WORD:
+                return executeFirstPerson();
             case COMMAND_FIND_WORD:
                 return executeFindPersons(commandArgs);
             case COMMAND_LIST_WORD:
@@ -579,6 +585,21 @@ public class AddressBook {
      */
     private static String executeListAllPersonsInAddressBook() {
         ArrayList<HashMap<String, String>> toBeDisplayed = getAllPersonsInAddressBook();
+        showToUser(toBeDisplayed);
+        return getMessageForPersonsDisplayedSummary(toBeDisplayed);
+    }
+
+    /**
+     * Displays first person in the address book to the user.
+     *
+     * @return feedback display message for the operation result
+     */
+    private static String executeFirstPerson() {
+        ArrayList<HashMap<String, String>> toBeDisplayed = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> first = getFirstPersonInAddressBook();
+        if (first != null) {
+            toBeDisplayed.add(first);
+        }
         showToUser(toBeDisplayed);
         return getMessageForPersonsDisplayedSummary(toBeDisplayed);
     }
@@ -809,6 +830,13 @@ public class AddressBook {
      */
     private static ArrayList<HashMap<String, String>> getAllPersonsInAddressBook() {
         return ALL_PERSONS;
+    }
+
+    /**
+     * Returns first person in the address book
+     */
+    private static HashMap<String, String> getFirstPersonInAddressBook() {
+        return ALL_PERSONS.size() == 0 ? null : ALL_PERSONS.get(0);
     }
 
     /**
