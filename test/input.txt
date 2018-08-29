@@ -30,16 +30,21 @@
   # should add correctly
   add Adam Brown p/111111 e/adam@gmail.com
   list
+  first
   add Betsy Choo p/222222 e/benchoo@nus.edu.sg
   list
+  first  
 
   # order of phone and email should not matter
   add Charlie Dickson e/charlie.d@nus.edu.sg p/333333
   list
+  first
   add Dickson Ee e/dickson@nus.edu.sg p/444444
   list
+  first
   add Esther Potato p/555555 e/esther@notreal.potato
   list
+  first
 
 ##########################################################
 # test find persons command
@@ -82,14 +87,18 @@
 
   # should have deleted based on last active view's index
   list
+  first
 
   # deletes correct person
   delete 4
   list
+  first
 
-  # listing indexes get updated on next request
+  # list
+  firsting indexes get updated on next request
   delete 1
   list
+  first
 
 ##########################################################
 # test clear command
@@ -98,6 +107,7 @@
   # clears all
   clear
   list
+  first
 
 ##########################################################
 # test exit command
@@ -106,3 +116,4 @@
   # exits properly
   exit
   list
+  first
